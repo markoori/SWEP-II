@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<style>
+    body{display: flex;justify-content: center;align-items: center;flex-wrap: wrap;
+     width: 100%;min-height: 95vh;    
+     background-color: rgb(22, 21, 21) ;color: white}
+input{width: 300px;height: 60px;display: block;
+      outline:0px;border:1px solid white;border-radius: 50px;
+      margin: 20px;padding-left: 20px;font-size: medium;
+      background-color: transparent;color:white}
+input[type=submit]{width:150px;height:75px;border:2px solid green;
+                   cursor:pointer}
+header{margin: 50px;width:5;flex-wrap: wrap;}
+header .connect h1{font-size: 6vw;
+                    color: transparent;
+                   -webkit-text-stroke: .4px white;
+                    text-shadow: 2px 2px 4px black;}
+header .connect h1::after{content:"Talent Show";font-size:40px;color:white}
+label{font-size: 17px;letter-spacing: 2px;}
+
+
+@media screen and (max-width:700px) {
+    header.connect h1{font-size:40px}
+}
+</style>
+<body>
+    <form action="{{ url_for('FormSubmision') }}" method="POST">
+        {{ form.csrf_token }}
+        {{ form.fullName.label }}
+        {{ form.fullName }}
+        {% for e in form.fullName.errors %}
+         <p>{{ e }}</p>
+        {% endfor %}
+
+        {# email input section #}
+        {{ form.email.label }}
+        {{ form.email }}
+        {% for e in form.email.errors %}
+        <p>{{ e }}</p>
+       {% endfor %}
+
+       {{ form.talent.label }}
+       {{ form.talent }}
+       {% for e in form.talent.errors %}
+       <p>{{ e }}</p>
+      {% endfor %}
+
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html>
